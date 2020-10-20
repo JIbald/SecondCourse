@@ -15,6 +15,28 @@ public:
 	// Sets default values for this actor's properties
 	AFloater();
 
+	UPROPERTY(VisibleAnywhere, Category = "ActorMeshComponents")
+	UStaticMeshComponent* StaticMesh;
+
+	// Location used by SetActorLocation() when BeginPlay() is called
+		// This variable is only editable as a Floater-instance
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Floater Variables")
+	FVector InitialLocation;
+	
+
+	// Location of actor when dragged in scene (UE Editor)
+		// so we don't want this to be editabled as an instance.
+		// this is more like a record of where the actor used to be, 
+		// before SetActorLocation() was called
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category = "Floater Variables")
+	FVector PlacedLocation; 
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Floater Variables")
+	bool bInitializeFloaterLocations;
+
+	/* UPROPERTY(VisibleAnywhere, Category = "ActorMeshComponents")
+	UStaticMeshComponent* StaticMesh1; */
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
