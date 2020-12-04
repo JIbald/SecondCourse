@@ -2,6 +2,7 @@
 
 
 #include "Floater.h"
+#include "Components/StaticMeshComponent.h"
 
 // Sets default values
 AFloater::AFloater()
@@ -36,6 +37,21 @@ void AFloater::BeginPlay()
 		SetActorLocation(InitialLocation); //sets position of the "Floater actor" to 0.0 for all axis. 
 	}
 	
+	// lesson 20 and previous
+	//FHitResult HitResult;
+	// Translation
+	//FVector LocalOffset = FVector(200.f, 0.0f, 0.0f);
+	//AddActorLocalOffset(LocalOffset, true, &HitResult);
+	//AddActorWorldOffset(LocalOffset, true, &HitResult);
+	// Rotation
+	//FRotator Rotation = FRotator(0.0f, 0.0f, 0.0f);
+	//AddActorLocalRotation(Rotation);
+	
+	//lesson 21 force and torque
+	InitialForce = FVector(8000000.0f, 0.0f, 0.0f);
+	StaticMesh->AddForce(InitialForce);
+
+	
 }
 
 // Called every frame
@@ -45,7 +61,16 @@ void AFloater::Tick(float DeltaTime)
 
 	if (bShouldFloat)
 	{
-		FHitResult HitResult;
-		AddActorLocalOffset(InitialDirection, false, &HitResult);
+		//FHitResult HitResult;
+		//AddActorLocalOffset(InitialDirection, true, &HitResult);
+
+		//FVector HitLocation = HitResult.Location;
+
+		//UE_LOG(LogTemp, Warning, TEXT("Hit Location: X= %f, Y= %f, Z =%f"), HitLocation.X, HitLocation.Y, HitLocation.Z)
 	}
+
+	// makes something spin
+	//FRotator Rotation = FRotator(0.0f, 0.0f, 0.5f);
+	//AddActorLocalRotation(Rotation);
+	//AddActorWorldRotation(Rotation);
 }

@@ -46,6 +46,9 @@ public:
 	/* UPROPERTY(VisibleAnywhere, Category = "ActorMeshComponents")
 	UStaticMeshComponent* StaticMesh1; */
 
+	UPROPERTY(BlueprintReadWrite, EditInstanceOnly, Category = "Floater Variables")
+	FVector InitialForce;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
